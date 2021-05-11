@@ -1,14 +1,38 @@
-let dailyReminder = ["Remember to stretch every hours", "Don't forget to drink water", "Exercising for 30 minutes a day is great for health", "Don't get too busy and forget to eat!", "Take a moment to breathe", "Make the best of your day!"]
+function randomGen (num) {
+    return Math.floor(Math.random()* num)
+    // returns random value used to pull message
+}
 
+const mixedMessages = {
 
+    dailyFitness: ['10 push-ups', '10 sit-ups', '5 jumping-jacks', '5 burpees'],
+    dailySnack: ['Apple', 'Chips', 'Banana', 'Cake'],
+    dailyMotivation: ['Keep it up', 'Your almost there', 'YOU GOT THIS!']
+    // Arrays of quotes that will be used to create the message
+}
 
-let doThisExercise = ["Do 10 jumping-jacks", "Do 10 push-ups", "Do 3 burpees", "Do 10 sit-ups!"]
+let finalMessage = [];
 
+for (properties in mixedMessages){
+    let num = randomGen(mixedMessages[properties].length)
+    switch(properties){
+        case 'dailyFitness':
+        finalMessage.push(`Your daily fitness activity for today is: ${mixedMessages[properties][num]}.`)
+        break;
+        case 'dailySnack':
+            finalMessage.push(`Your snack for today is....${mixedMessages[properties][num]}`)
+        break;
+        case 'dailyMotivation':
+            finalMessage.push(`Regarding all your goals: ${mixedMessages[properties][num]}`)
+        break;
+            default:
+            finalMessage.push('error')
+    }
+}
 
+function format(finalMessage){
+    const finalFormat = finalMessage.join('\n\n')
+    console.log(finalFormat)
+}
 
-let randomMeals = ["Have a snack: Cereal", "Have a snack: Apple", "Have a snack: cookies", "Have a snack: Banana"]
-
-
-console.log(randomMeals[(Math.floor(Math.random()*randomMeals.length))])
-console.log(doThisExercise[Math.floor(Math.random()*doThisExercise.length)])
-console.log(dailyReminder[Math.floor(Math.random()*dailyReminder.length)])
+format(finalMessage);
